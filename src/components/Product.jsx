@@ -1,4 +1,4 @@
-export default function Product({title,price}) {
+export default function Product({ title, price }) {
   return (
     <div
       style={{
@@ -10,11 +10,8 @@ export default function Product({title,price}) {
         marginTop: 20,
       }}
     >
-      <h1 style={{fontSize:19}}>
-        {title}
-      </h1>
+      <h1 style={{ fontSize: 19 }}>{title}</h1>
       <p>₹{price}</p>
-      
     </div>
   );
 }
