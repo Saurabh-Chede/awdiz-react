@@ -1,5 +1,6 @@
 import Product from "./Product";
 import Counter from './Counter'
+import EventHandling from "./EventHandling";
 export default function Hero() {
   return (
     <div style={{ padding: "20px" }}>
@@ -11,7 +12,8 @@ export default function Hero() {
         {/* <Product title="product-card" price="199" />
         <Product title="watch" price="99" />
         <Product title="iphone" price="79999" /> */}
-        <Counter />
+        {/* <Counter /> */}
+        <EventHandling></EventHandling>
       </div>
     </div>
   );
