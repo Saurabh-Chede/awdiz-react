@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <div style={{ backgroundColor: "burlywood", paddingBlock: 10 }}>Footer</div>
+    <div style={{ backgroundColor: "burlywood", padding:20 }}>Footer</div>
   );
 }
 
