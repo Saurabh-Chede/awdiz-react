@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ProductCard() {
   const [products, setProducts] = useState([]);
@@ -12,30 +13,38 @@ function ProductCard() {
 
   return (
     <div>
-      <button style={{marginBottom:20}} onClick={fetchProducts}>click to fetch products</button>
+      <button style={{ marginBottom: 20 }} onClick={fetchProducts}>
+        click to fetch products
+      </button>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
         {products.map((product) => {
           return (
-            <div
+            <Link
+              to={`/product/${product.id}`}
               key={product.id}
-              style={{
-                border: "1px solid gray",
-                width: "200px",
-                padding: "10px",
-                height:'300px'
-              }}
+              style={{ textDecoration: "none", color: "black" }}
             >
-              <img
-                src={product.image}
-                alt={product.title}
-                style={{ width: "100px" }}
-              />
+              <div
+                style={{
+                  border: "1px solid gray",
+                  width: "200px",
+                  padding: "10px",
+                  height: "300px",
+                  cursor: "pointer",
+                }}
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  style={{ width: "100px" }}
+                />
 
-              <h4>{product.title}</h4>
+                <h4>{product.title}</h4>
 
-              <p>₹ {product.price}</p>
-            </div>
+                <p>₹ {product.price}</p>
+              </div>
+            </Link>
           );
         })}
       </div>
