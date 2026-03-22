@@ -1,10 +1,13 @@
 import React from 'react'
 import ProductCard from './ProductCard'
+import Memoizing from './Day8/Memoizing.Jsx'
+
+
 
 function Home() {
   return (
     <div>
-      <ProductCard></ProductCard>
+     <Memoizing></Memoizing>
     </div>
   )
 }

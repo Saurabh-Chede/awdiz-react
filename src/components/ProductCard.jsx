@@ -7,7 +7,6 @@ function ProductCard() {
 
   const fetchProducts = async () => {
     const response = await axios.get("https://fakestoreapi.com/products");
-    console.log(response.data, "response");
     setProducts(response.data);
   };
 
