@@ -5,7 +5,7 @@ function Memoizing() {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
 
-  // const output = useMemo(() => lengthyOperation(counter), [counter]);
+  const output = useMemo(() => lengthyOperation(counter), [counter]);
 
   return (
     <div>
@@ -15,6 +15,7 @@ function Memoizing() {
          <br /> Runs only
         when dependency changes
       </p>
+       <h1>Lengthy Operation value : {output}</h1>
       <h1>counter:{counter}</h1>
       <button onClick={() => setCounter(counter + 1)}>+increament</button>
       <h1>Counter 2 : {counter2}</h1>
@@ -25,12 +26,12 @@ function Memoizing() {
   );
 }
 
-// function lengthyOperation(counter) {
-//   for (let i = 0; i < 1000000000; i++) {
-//     counter++;
-//   }
-//   console.log("inside lengthy operation", counter);
-//   return counter;
-// }
+function lengthyOperation(counter) {
+  for (let i = 0; i < 1000000000; i++) {
+    counter++;
+  }
+  console.log("inside lengthy operation", counter);
+  return counter;
+}
 
 export default Memoizing;
