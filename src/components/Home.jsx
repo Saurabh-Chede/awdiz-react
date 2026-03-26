@@ -3,6 +3,7 @@ import ProductCard from './ProductCard'
 import Memoizing from './Day8/Memoizing.Jsx'
 import Day9 from './Day9/Day9'
 import UseRef from './Day9/UseRef'
+import UseReducer from './Day10/UseReducer'
 
 
 
@@ -11,7 +12,8 @@ function Home() {
     <div>
      {/* <Memoizing></Memoizing> */}
      {/* <Day9></Day9> */}
-     <UseRef></UseRef>
+     {/* <UseRef></UseRef> */}
+     <UseReducer></UseReducer>
     </div>
   )
 }

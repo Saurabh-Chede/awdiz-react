@@ -17,6 +17,7 @@ export default function Hero() {
         {/* <Counter /> */}
         {/* <EventHandling></EventHandling> */}
         {/* <ProductCard/> */}
+        
        
       </div>
     </div>
