@@ -1,4 +1,5 @@
 import React, { act, useReducer, useState } from "react";
+import CartApp from './AddtoCart'
 
 function reducer(state, action) {
   console.log(state, "state");
@@ -39,6 +40,8 @@ const UseReducer = () => {
         Decreement
       </button>
       <button style={{marginLeft:20}} onClick={() => dispatch({ type: "reset" })}>Reset</button>
+      <hr />
+      <CartApp/>
     </div>
   );
 };
