@@ -6,6 +6,7 @@ import { Routes,Route } from "react-router-dom";
 import SingleProductPage from './components/SingleProductPage'
 import ContextCounter from "./components/Day11/ContextCounter";
 import ReduxCounter from './components/Day12/ReduxCounter'
+import Todo from './components/Day14/Todo'
 
 export default function App() {
   return (
@@ -17,6 +18,8 @@ export default function App() {
         <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/context-counter" element={<ContextCounter/>} />
         <Route path="/redux-counter" element={<ReduxCounter/>} />
+        <Route path="/todo" element={<Todo/>} />
+
       </Routes>
       </div>
       <Footer/>
