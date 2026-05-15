@@ -11,16 +11,15 @@ function Memoizing() {
     <div>
       <p>
         useMemo = value cache <br />
-         It avoids re-running heavy calculations 
-         <br /> Runs only
-        when dependency changes
+        It avoids re-running heavy calculations
+        <br /> Runs only when dependency changes
       </p>
-       <h1>Lengthy Operation value : {output}</h1>
+      <h1>Lengthy Operation value : {output}</h1>
       <h1>counter:{counter}</h1>
       <button onClick={() => setCounter(counter + 1)}>+increament</button>
       <h1>Counter 2 : {counter2}</h1>
       <button onClick={() => setCounter2(counter2 + 1)}>+ for counter 2</button>
-      <hr style={{marginBottom:20}} />
+      <hr style={{ marginBottom: 20 }} />
       <UseCallback></UseCallback>
     </div>
   );

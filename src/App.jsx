@@ -7,6 +7,8 @@ import SingleProductPage from './components/SingleProductPage'
 import ContextCounter from "./components/Day11/ContextCounter";
 import ReduxCounter from './components/Day12/ReduxCounter'
 import Todo from './components/Day14/Todo'
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 export default function App() {
   return (
@@ -19,7 +21,9 @@ export default function App() {
         <Route path="/context-counter" element={<ContextCounter/>} />
         <Route path="/redux-counter" element={<ReduxCounter/>} />
         <Route path="/todo" element={<Todo/>} />
-
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        
       </Routes>
       </div>
       <Footer/>

@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav
@@ -14,15 +16,12 @@ export default function Navbar() {
       <h3 style={{ margin: 0 }}>SAURABH</h3>
 
       <div style={{ display: "flex", gap: "20px" }}>
-        <a href="#" style={{ textDecoration: "none", color: "#333" }}>
+        <NavLink to={"/"} style={{ textDecoration: "none", color: "#333" }}>
           Home
-        </a>
-        <a href="#" style={{ textDecoration: "none", color: "#333" }}>
-          About
-        </a>
-        <a href="#" style={{ textDecoration: "none", color: "#333" }}>
-          Contact
-        </a>
+        </NavLink>
+        <NavLink to={"/todo"} style={{ textDecoration: "none", color: "#333" }}>
+          todo
+        </NavLink>
       </div>
     </nav>
   );
