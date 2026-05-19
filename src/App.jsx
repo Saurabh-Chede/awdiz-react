@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from './components/Home'
+import Home from './pages/Home'
 import Footer from "./components/Footer";
 import { Routes,Route } from "react-router-dom";
 import SingleProductPage from './components/SingleProductPage'
@@ -9,6 +9,10 @@ import ReduxCounter from './components/Day12/ReduxCounter'
 import Todo from './components/Day14/Todo'
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AddProducts from './pages/seller/AddProducts'
+import GetAddedProducts from './pages/seller/GetAddedProducts'
+import Profile from './pages/Profile'
+
 
 export default function App() {
   return (
@@ -20,6 +24,11 @@ export default function App() {
         <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/context-counter" element={<ContextCounter/>} />
         <Route path="/redux-counter" element={<ReduxCounter/>} />
+         <Route path="/profile" element={<Profile />} />
+        {/* Seller routes  */}
+        <Route path="/add-products" element={<AddProducts />} />
+        <Route path="/get-added-products" element={<GetAddedProducts />} />
+
         <Route path="/todo" element={<Todo/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
