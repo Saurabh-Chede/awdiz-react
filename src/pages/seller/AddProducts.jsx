@@ -1,10 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../../config/axiosConfig";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const AddProducts = () => {
   const router = useNavigate();
+
   const [productData, setProductData] = useState({
     name: "",
     price: "",
@@ -15,31 +16,49 @@ const AddProducts = () => {
   });
 
   const handleChange = (event) => {
-    setProductData({ ...productData, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+
+    setProductData({
+      ...productData,
+      [name]:
+        name === "price" || name === "stock"
+          ? Number(value)
+          : value,
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
-      const response = await api.post("/seller/add-product", productData);
+      const response = await api.post(
+        "/seller/add-product",
+        productData
+      );
+
       if (response.data.success) {
         toast.success(response.data.message);
+
         router("/get-added-products");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+
+      toast.error(
+        error.response?.data?.message ||
+          "Something went wrong"
+      );
     }
   };
 
-  console.log(productData, "productData");
-
   return (
     <div>
-      <h1>AddProducts</h1>
+      <h1>Add Products</h1>
+
       <form onSubmit={handleSubmit}>
         <label>Product Name</label>
         <br />
+
         <input
           required
           name="name"
@@ -47,9 +66,13 @@ const AddProducts = () => {
           value={productData.name}
           onChange={handleChange}
         />
+
         <br />
+
         <label>Product Price</label>
+
         <br />
+
         <input
           required
           name="price"
@@ -57,9 +80,13 @@ const AddProducts = () => {
           value={productData.price}
           onChange={handleChange}
         />
+
         <br />
+
         <label>Product Description</label>
+
         <br />
+
         <input
           required
           name="description"
@@ -67,9 +94,13 @@ const AddProducts = () => {
           value={productData.description}
           onChange={handleChange}
         />
+
         <br />
+
         <label>Product Image</label>
+
         <br />
+
         <input
           required
           name="image"
@@ -77,22 +108,38 @@ const AddProducts = () => {
           value={productData.image}
           onChange={handleChange}
         />
+
         <br />
+
         <label>Product Category</label>
+
         <br />
+
         <select
           required
           name="category"
           value={productData.category}
           onChange={handleChange}
         >
-          <option value="clothing">Clothing</option>
-          <option value="footwear">Footwear</option>
-          <option value="electronics">Electronics</option>
+          <option value="clothing">
+            Clothing
+          </option>
+
+          <option value="footwear">
+            Footwear
+          </option>
+
+          <option value="electronics">
+            Electronics
+          </option>
         </select>
+
         <br />
+
         <label>Product Stock</label>
+
         <br />
+
         <input
           required
           name="stock"
@@ -100,8 +147,14 @@ const AddProducts = () => {
           value={productData.stock}
           onChange={handleChange}
         />
+
         <br />
-        <input type="submit" value="Create Product" />
+        <br />
+
+        <input
+          type="submit"
+          value="Create Product"
+        />
       </form>
     </div>
   );

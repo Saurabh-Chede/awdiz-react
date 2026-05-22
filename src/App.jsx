@@ -1,41 +1,71 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from './pages/Home'
+import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import { Routes,Route } from "react-router-dom";
-import SingleProductPage from './components/SingleProductPage'
+import { Routes, Route } from "react-router-dom";
+import SingleProductPage from "./components/SingleProductPage";
 import ContextCounter from "./components/Day11/ContextCounter";
-import ReduxCounter from './components/Day12/ReduxCounter'
-import Todo from './components/Day14/Todo'
+import ReduxCounter from "./components/Day12/ReduxCounter";
+import Todo from "./components/Day14/Todo";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AddProducts from './pages/seller/AddProducts'
-import GetAddedProducts from './pages/seller/GetAddedProducts'
-import Profile from './pages/Profile'
+import AddProducts from "./pages/seller/AddProducts";
+import GetAddedProducts from "./pages/seller/GetAddedProducts";
+import Profile from "./pages/Profile";
 
+import { useEffect } from "react";
+import api from "./config/axiosConfig";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/authSlice";
 
 export default function App() {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-      <Navbar/>
-      <div style={{flex:1,padding:20}}>
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<SingleProductPage/>} />
-        <Route path="/context-counter" element={<ContextCounter/>} />
-        <Route path="/redux-counter" element={<ReduxCounter/>} />
-         <Route path="/profile" element={<Profile />} />
-        {/* Seller routes  */}
-        <Route path="/add-products" element={<AddProducts />} />
-        <Route path="/get-added-products" element={<GetAddedProducts />} />
+  const dispatch = useDispatch();
 
-        <Route path="/todo" element={<Todo/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
-        
-      </Routes>
+  const getLoggedInUser = async () => {
+    try {
+      const response = await api.get("/auth/get-current-user");
+
+      if (response.data.success) {
+        dispatch(login(response.data.user));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+      }}
+    >
+      <Navbar />
+
+      <div style={{ flex: 1, padding: 20 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<SingleProductPage />} />
+          <Route path="/context-counter" element={<ContextCounter />} />
+          <Route path="/redux-counter" element={<ReduxCounter />} />
+          <Route path="/profile" element={<Profile />} />
+
+          {/* Seller routes */}
+          <Route path="/add-products" element={<AddProducts />} />
+          <Route path="/get-added-products" element={<GetAddedProducts />} />
+
+          <Route path="/todo" element={<Todo />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }
