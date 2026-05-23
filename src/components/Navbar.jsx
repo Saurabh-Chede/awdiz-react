@@ -56,10 +56,10 @@ function Navbar() {
       >
         {userData?.role == "user" && (
           <>
-            <h4 style={{ cursor: "pointer" }} onClick={() => router("/men")}>
+            <h4 style={{ cursor: "pointer" }} onClick={() => router("/all-products")}>
               Men
             </h4>
-            <h4 style={{ cursor: "pointer" }} onClick={() => router("/women")}>
+            <h4 style={{ cursor: "pointer" }} onClick={() => router("/")}>
               Women
             </h4>
             <h4 style={{ cursor: "pointer" }} onClick={() => router("/kids")}>

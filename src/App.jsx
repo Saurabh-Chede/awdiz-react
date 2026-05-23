@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
-import SingleProductPage from "./components/SingleProductPage";
+import SingleProductPage from "./pages/SingleProductPage";
 import ContextCounter from "./components/Day11/ContextCounter";
 import ReduxCounter from "./components/Day12/ReduxCounter";
 import Todo from "./components/Day14/Todo";
@@ -17,6 +17,8 @@ import { useEffect } from "react";
 import api from "./config/axiosConfig";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/authSlice";
+import Products from './pages/Products'
+import Cart from './pages/Cart'
 
 export default function App() {
   const dispatch = useDispatch();
@@ -58,6 +60,13 @@ export default function App() {
           {/* Seller routes */}
           <Route path="/add-products" element={<AddProducts />} />
           <Route path="/get-added-products" element={<GetAddedProducts />} />
+          <Route path="/all-products" element={<Products/>} />
+          <Route path="/all-products" element={<Products/>} />
+          <Route path="/single-product/:id" element={<SingleProductPage />} />
+          <Route path="/cart" element={<Cart />} />
+
+
+          
 
           <Route path="/todo" element={<Todo />} />
           <Route path="/login" element={<Login />} />

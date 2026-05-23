@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/axiosConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
-const Products = () => {
+const Cart = () => {
   const router = useNavigate();
-
   const [products, setProducts] = useState([]);
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
 
   const getSellerAddedProduct = async () => {
     try {
-      const response = await api.get("/product/all-products");
+      const response = await api.get("/user/get-cart-products");
 
       if (response.data.success) {
-        setProducts(response.data.products);
+        setProducts(response.data.userProductsData.products);
       }
     } catch (error) {
       console.log(error);
@@ -36,149 +32,38 @@ const Products = () => {
         padding: "20px",
       }}
     >
-      {/* Heading */}
       <h1
         style={{
           textAlign: "center",
-          fontSize: "35px",
           marginBottom: "30px",
-          color: "#222",
+          fontSize: "35px",
+          color: "#333",
         }}
       >
-        All Products
+        My Cart
       </h1>
 
       <div
         style={{
-          display: "flex",
-          gap: "20px",
           width: "95%",
           margin: "auto",
-          flexWrap: "wrap",
         }}
       >
-        {/* Filters Section */}
-        <div
-          style={{
-            width: "250px",
-            backgroundColor: "white",
-            borderRadius: "15px",
-            padding: "20px",
-            boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
-            height: "fit-content",
-          }}
-        >
-          <h2
-            style={{
-              marginBottom: "20px",
-              color: "#333",
-            }}
-          >
-            Filters
-          </h2>
-
-          {/* Sort */}
-          <div style={{ marginBottom: "20px" }}>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              Sort By Price
-            </label>
-
-            <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "8px",
-                border: "1px solid gray",
-              }}
-            >
-              <option value="asc">Low To High</option>
-              <option value="desc">High To Low</option>
-            </select>
-          </div>
-
-          {/* Price Range */}
-          <div style={{ marginBottom: "20px" }}>
-            <label
-              style={{
-                fontWeight: "bold",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              Price Range
-            </label>
-
-            <input
-              type="number"
-              placeholder="Min Price"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                marginBottom: "10px",
-                borderRadius: "8px",
-                border: "1px solid gray",
-              }}
-            />
-
-            <input
-              type="number"
-              placeholder="Max Price"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                borderRadius: "8px",
-                border: "1px solid gray",
-              }}
-            />
-          </div>
-
-          {/* Apply Button */}
-          <button
-            style={{
-              width: "100%",
-              padding: "12px",
-              backgroundColor: "black",
-              color: "white",
-              border: "none",
-              borderRadius: "10px",
-              cursor: "pointer",
-              fontSize: "15px",
-            }}
-          >
-            Apply Filters
-          </button>
-        </div>
-
         {/* Products Section */}
         <div
           style={{
-            flex: "1",
             backgroundColor: "white",
-            borderRadius: "15px",
             padding: "20px",
-            boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+            borderRadius: "15px",
+            boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
           }}
         >
-          {/* Product Cards */}
           <div
             style={{
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
               gap: "20px",
-              marginBottom: "30px",
             }}
           >
             {products.map((product) => (
@@ -190,7 +75,7 @@ const Products = () => {
                   backgroundColor: "white",
                   borderRadius: "15px",
                   overflow: "hidden",
-                  boxShadow: "0px 4px 12px rgba(0,0,0,0.15)",
+                  boxShadow: "0px 4px 10px rgba(0,0,0,0.15)",
                   cursor: "pointer",
                   transition: "0.3s",
                 }}
@@ -285,7 +170,7 @@ const Products = () => {
                         cursor: "pointer",
                       }}
                     >
-                      View
+                      Buy Now
                     </button>
 
                     <button
@@ -293,12 +178,12 @@ const Products = () => {
                         padding: "8px 12px",
                         border: "none",
                         borderRadius: "8px",
-                        backgroundColor: "#ff9800",
+                        backgroundColor: "red",
                         color: "white",
                         cursor: "pointer",
                       }}
                     >
-                      Buy
+                      Remove
                     </button>
                   </div>
                 </div>
@@ -310,17 +195,18 @@ const Products = () => {
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
-              gap: "20px",
+              justifyContent: "space-between",
+              width: "250px",
+              margin: "30px auto 0px auto",
             }}
           >
             <button
               style={{
                 padding: "10px 20px",
-                backgroundColor: "#333",
-                color: "white",
                 border: "none",
                 borderRadius: "8px",
+                backgroundColor: "#333",
+                color: "white",
                 cursor: "pointer",
               }}
             >
@@ -330,10 +216,10 @@ const Products = () => {
             <button
               style={{
                 padding: "10px 20px",
-                backgroundColor: "#333",
-                color: "white",
                 border: "none",
                 borderRadius: "8px",
+                backgroundColor: "#333",
+                color: "white",
                 cursor: "pointer",
               }}
             >
@@ -346,4 +232,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Cart;
