@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./redux/authSlice";
 import Products from './pages/Products'
 import Cart from './pages/Cart'
+import Order from './pages/Order'
 
 export default function App() {
   const dispatch = useDispatch();
@@ -64,10 +65,7 @@ export default function App() {
           <Route path="/all-products" element={<Products/>} />
           <Route path="/single-product/:id" element={<SingleProductPage />} />
           <Route path="/cart" element={<Cart />} />
-
-
-          
-
+          <Route path="/orders" element={<Order/>}/>
           <Route path="/todo" element={<Todo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
