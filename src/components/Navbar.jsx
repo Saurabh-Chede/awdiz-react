@@ -83,6 +83,12 @@ function Navbar() {
             >
               View Product
             </h4>
+            <h4
+              style={{ cursor: "pointer" }}
+              onClick={() => router("/seller/dashboard")}
+            >
+              dashboard
+            </h4>
           </>
         )}
       </div>

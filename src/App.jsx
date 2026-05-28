@@ -20,6 +20,7 @@ import { login } from "./redux/authSlice";
 import Products from './pages/Products'
 import Cart from './pages/Cart'
 import Order from './pages/Order'
+import SellerDashboard from "./pages/seller/SellerDashboard"
 
 export default function App() {
   const dispatch = useDispatch();
@@ -59,9 +60,9 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
 
           {/* Seller routes */}
+          <Route path="seller/dashboard" element={<SellerDashboard />} />
           <Route path="/add-products" element={<AddProducts />} />
           <Route path="/get-added-products" element={<GetAddedProducts />} />
-          <Route path="/all-products" element={<Products/>} />
           <Route path="/all-products" element={<Products/>} />
           <Route path="/single-product/:id" element={<SingleProductPage />} />
           <Route path="/cart" element={<Cart />} />

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const router = useNavigate()
+  const router = useNavigate();
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({ email: "", password: "" });
   console.log(userData, "userData");
@@ -27,7 +27,13 @@ function Login() {
       if (response?.data?.success) {
         toast.success(response?.data?.message);
         dispatch(login(response?.data?.user));
-        router('/')
+        if (response?.data?.user?.role === "seller") {
+          router("/seller/dashboard");
+        } else if (response?.data?.user?.role === "admin") {
+          router("/admin/dashboard");
+        } else {
+          router("/");
+        }
       }
     } catch (error) {
       console.log(error.response.data.message, "error");
